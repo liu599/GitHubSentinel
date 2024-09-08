@@ -10,7 +10,7 @@ class LLM:
         LOG.add("daily_progress/llm_logs.log", rotation="1 MB", level="DEBUG")
 
     def generate_daily_report(self, markdown_content, dry_run=False):
-        prompt = f"以下是项目的最新进展，根据功能合并同类项，形成一份简报，至少包含：1）新增功能；2）主要改进；3）修复问题；:\n\n{markdown_content}"
+        prompt = f"你是一个简报小助手, 以下是项目的最新进展，根据下列信息合并同类项，形成一份简报，至少包含：1）新增功能；2）主要改进；3）修复问题。 你要严格按照这个格式, 不要回答多余内容。 某一项如果没有则回答无:\n\n{markdown_content}"
         
         if dry_run:
             LOG.info("Dry run mode enabled. Saving prompt to file.")
